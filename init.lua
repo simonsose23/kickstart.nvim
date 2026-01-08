@@ -247,17 +247,18 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 
 local function nvim_tree_on_attach(bufnr)
-  local api = require "nvim-tree.api"
+  local api = require 'nvim-tree.api'
 
   local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
 
   -- custom mappings
-  vim.keymap.set("n", "+", api.tree.change_root_to_node, opts("CD"))
+  vim.keymap.set('n', '+', api.tree.change_root_to_node, opts 'CD')
+  vim.keymap.set('n', '<C-M>', api.marks.bulk.move, opts 'Move Bookmarked')
 end
 
 require('lazy').setup({
@@ -269,12 +270,12 @@ require('lazy').setup({
     opts = {
       diagnostics = {
         enable = true,
-        show_on_dirs = true
-      }
+        show_on_dirs = true,
+      },
     },
     config = function()
-      require("nvim-tree").setup {
-          on_attach = nvim_tree_on_attach,
+      require('nvim-tree').setup {
+        on_attach = nvim_tree_on_attach,
       }
     end,
     on_attach = nvim_tree_on_attach,
@@ -793,18 +794,18 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true, glsl = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 500,
-          lsp_format = 'fallback',
-        }
-      end
+        -- Disable "format_on_save lsp_fallback" for languages that don't
+        -- have a well standardized coding style. You can add additional
+        -- languages here or re-enable it for the disabled ones.
+        local disable_filetypes = { c = true, cpp = true, glsl = true }
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          return nil
+        else
+          return {
+            timeout_ms = 500,
+            lsp_format = 'fallback',
+          }
+        end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
