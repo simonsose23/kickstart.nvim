@@ -10,9 +10,9 @@ return {
   },
   cmd = 'Neogit',
   keys = {
-    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
+    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Show Neogit' },
   },
   opts = {
-    kind = 'vsplit',
+    kind = 'tab',
   },
 }

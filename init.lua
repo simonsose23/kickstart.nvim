@@ -188,6 +188,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', '<leader>xt', '<Cmd>tabclose<cr>', { desc = 'Exit currrent tab' })
 vim.keymap.set('n', '<leader>xx', '<Cmd>qall<cr>', { desc = 'Exit everything' })
 
+-- Keymap categories
+vim.keymap.set('n', '<leader>x', '', { desc = 'Exit' })
+vim.keymap.set('n', '<leader>g', '', { desc = 'Goto' })
+vim.keymap.set('n', '<leader>t', '', { desc = 'Toggle Window' })
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
