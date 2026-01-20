@@ -279,8 +279,8 @@ require('lazy').setup({
     opts = {
       diagnostics = {
         enable = true,
-        show_on_dirs = true,
-      },
+        show_on_dirs = true
+      }
     },
     config = function()
       require('nvim-tree').setup {
@@ -952,6 +952,20 @@ require('lazy').setup({
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-day'
     end,
+  },
+  -- set the right colorscheme for light/darkmode
+  {
+    'f-person/auto-dark-mode.nvim',
+    opts = {
+      set_dark_mode = function()
+        vim.cmd.colorscheme 'tokyonight-moon'
+      end,
+      set_light_mode = function()
+        vim.cmd.colorscheme 'tokyonight-day'
+      end,
+      update_interval = 3000,
+      fallback = 'dark',
+    },
   },
 
   -- Highlight todo, notes, etc in comments
