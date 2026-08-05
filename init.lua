@@ -183,6 +183,9 @@ vim.o.confirm = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.keymap.set('n', 'go', 'g_i<right>', { desc = 'Insert at end of line' })
+vim.keymap.set('n', 'ga', 'g0wi', { desc = 'Insert at beginning of line' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -287,27 +290,6 @@ end
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
-  {
-    'nvim-tree/nvim-tree.lua',
-    opts = {
-      diagnostics = {
-        enable = true,
-        show_on_dirs = true,
-      },
-    },
-    config = function()
-      require('nvim-tree').setup {
-        on_attach = nvim_tree_on_attach,
-      }
-    end,
-    on_attach = nvim_tree_on_attach,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    vim.keymap.set({ 'n', 'v' }, '<leader>tt', '<cmd>NvimTreeToggle<cr>', { desc = 'Toggle Nvim Tree' }),
-    vim.keymap.set({ 'n', 'v' }, '<leader>gt', '<cmd>NvimTreeFocus<cr>', { desc = 'Goto Nvim Tree' }),
-  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -733,6 +715,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -1096,6 +1079,26 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+-- Setup VueJS
+local vue_ls_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+
+local vue_plugin = {
+  name = '@vue/typescript-plugin',
+  location = vue_ls_path,
+  languages = { 'vue' },
+  configNamespace = 'typescript',
+}
+
+vim.lsp.config('ts_ls', {
+  init_options = {
+    plugins = {
+      vue_plugin,
+    },
+  },
+  filetypes = tsserver_filetypes,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
