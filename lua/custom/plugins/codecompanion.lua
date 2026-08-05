@@ -19,6 +19,7 @@ return {
                   choices = {
                     'devstral-small-2505-mlx',
                     'mistralai/devstral-small-2-2512',
+                    'qwen/qwen3-coder-30b',
                   },
                 },
               },
@@ -32,18 +33,18 @@ return {
         inline = {
           keymaps = {
             accept_change = {
-              modes = { n = 'ga' },
+              modes = { n = 'gy' },
               description = 'Accept the suggested change',
             },
             reject_change = {
-              modes = { n = 'gr' },
+              modes = { n = 'gn' },
               opts = { nowait = true },
               description = 'Reject the suggested change',
             },
           },
           adapter = {
             name = 'localllm',
-            model = 'mistralai/devstral-small-2-2512',
+            model = 'qwen/qwen3-coder-30b',
           },
         },
         chat = {
