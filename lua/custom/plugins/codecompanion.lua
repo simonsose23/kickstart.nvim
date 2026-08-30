@@ -15,7 +15,7 @@ return {
               },
               schema = {
                 model = {
-                  default = 'mistralai/devstral-small-2-2512',
+                  default = 'qwen/qwen3-coder-30b',
                   choices = {
                     'devstral-small-2505-mlx',
                     'mistralai/devstral-small-2-2512',
@@ -52,6 +52,14 @@ return {
         },
       },
       display = {
+          chat = {
+            window = {
+              layout = 'float',
+              buflisted = false,
+              width = 0.8,
+              height = 0.8,
+            },
+          },
         inline = {
           layout = 'vertical',
         },
