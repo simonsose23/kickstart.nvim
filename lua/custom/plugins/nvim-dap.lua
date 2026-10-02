@@ -10,6 +10,12 @@ return {
       args = { '-m', 'debugpy.adapter' },
     }
 
+    dap.adapters.lldb = {
+      type = 'executable',
+      command = 'lldb-dap',
+      args = { '' },
+    }
+
     -- configure debug configurations
     dap.configurations.python = {
       {
